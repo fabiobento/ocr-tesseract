@@ -1,0 +1,4 @@
+pytesseract
+imutils
+gdown
+numpy
