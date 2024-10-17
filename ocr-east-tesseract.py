@@ -61,7 +61,7 @@ def net_create(detector = './Modelos/frozen_east_text_detection.pb'):
 
 def net_forward(img,
                 rede_neural,
-                min_confianca = 0.9,
+                min_confianca = 0.95,
                 nomes_camadas = ['feature_fusion/Conv_7/Sigmoid', 'feature_fusion/concat_3']):
     blob = cv2.dnn.blobFromImage(img, 1.0, (img.shape[1], img.shape[0]), swapRB = True, crop = False)
     rede_neural.setInput(blob)
@@ -117,8 +117,8 @@ def main():
     tesseract_setup(config_tesseract)
     
     ####  CONFIGURAÇÃO DA REDE NEURAL  ####
-    largura = 640 #320
-    altura = 640 #320
+    largura = 320 #640
+    altura = 320 #640
     rede_neural = net_create()
         
     # Carregar imagem para teste
