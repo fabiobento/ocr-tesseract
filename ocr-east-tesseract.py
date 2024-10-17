@@ -9,9 +9,10 @@ import urllib.request
 
 def pre_processamento(img):
   gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-  maior = cv2.resize(gray, None, fx=2.0, fy=2.0, interpolation=cv2.INTER_CUBIC)
+  #maior = cv2.resize(gray, None, fx=2.0, fy=2.0, interpolation=cv2.INTER_CUBIC)
   #valor, preprocess_img = cv2.threshold(maior, 0, 255, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)
-  preprocess_img = cv2.adaptiveThreshold(maior, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 9)  
+  valor, preprocess_img = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)
+  #preprocess_img = cv2.adaptiveThreshold(maior, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 9)  
   return preprocess_img
 
 def download_detector(url, output):
@@ -61,7 +62,7 @@ def net_create(detector = './Modelos/frozen_east_text_detection.pb'):
 
 def net_forward(img,
                 rede_neural,
-                min_confianca = 0.95,
+                min_confianca = 0.90,
                 nomes_camadas = ['feature_fusion/Conv_7/Sigmoid', 'feature_fusion/concat_3']):
     blob = cv2.dnn.blobFromImage(img, 1.0, (img.shape[1], img.shape[0]), swapRB = True, crop = False)
     rede_neural.setInput(blob)
