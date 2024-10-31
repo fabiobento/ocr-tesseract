@@ -2,3 +2,4 @@ pytesseract
 imutils
 gdown
 numpy
+picamera2
