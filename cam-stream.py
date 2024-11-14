@@ -7,7 +7,7 @@ def main():
     camera = Picamera2()
     camera.preview_configuration.main.size = (320, 240)  # Define a resolução
     camera.preview_configuration.main.format = "RGB888"  # Define o formato da imagem para RGB
-    camera.preview_configuration.controls.FrameRate = 30  # Define a taxa de quadros
+    camera.preview_configuration.controls.FrameRate = 10  # Define a taxa de quadros
     camera.configure("preview")
     
     camera.start()  # Inicia a câmera
